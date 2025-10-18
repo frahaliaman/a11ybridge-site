@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A11yBridge — Accessibility Consulting</title>
+  <meta name="description" content="A11yBridge helps teams ship accessible products: WCAG audits, remediation, training, VPATs, and inclusive UX guidance." />
+  <meta name="color-scheme" content="light dark" />
+  <meta property="og:title" content="A11yBridge — Accessibility Consulting" />
+  <meta property="og:description" content="WCAG audits, remediation, training, VPATs, and inclusive UX guidance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/social-card.png" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #4b5563;
+      --brand: #2563eb;
+      --brand-contrast: #ffffff;
+      --surface: #f3f4f6;
+      --focus: #f59e0b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b0e14; --text: #f3f4f6; --muted:#9ca3af; --surface:#111827; --brand:#60a5fa; --brand-contrast:#0b0e14; --focus:#fbbf24; }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: var(--bg); color: var(--text); line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
+    a { color: var(--brand); }
+    a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { position: static; width: auto; height: auto; display: inline-block; padding: .5rem .75rem; background: var(--focus); color: #000; border-radius: .5rem; }
+    header { border-bottom: 1px solid var(--surface); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
+    .brand { font-weight: 800; letter-spacing: .3px; display: flex; align-items: center; gap: .5rem; }
+    .brand svg { width: 28px; height: 28px; }
+    nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 1rem; flex-wrap: wrap; }
+    nav a { text-decoration: none; font-weight: 600; }
+
+    .hero { padding: 3.5rem 0; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.2; margin: 0 0 .75rem; }
+    .sub { color: var(--muted); max-width: 55ch; }
+    .cta-row { margin-top: 1.25rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn { border: 0; border-radius: .75rem; padding: .85rem 1.1rem; font-weight: 700; cursor: pointer; }
+    .btn.primary { background: var(--brand); color: var(--brand-contrast); }
+    .btn.secondary { background: var(--surface); color: var(--text); }
+
+    .section { padding: 2.5rem 0; border-top: 1px solid var(--surface); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+    .card { background: var(--surface); padding: 1rem; border-radius: 1rem; }
+
+    @media (max-width: 880px) {
+      .col-6, .col-4 { grid-column: 1 / -1; }
+    }
+
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem; }
+    .kpi { background: var(--surface); border-radius: 1rem; padding: 1rem; text-align: center; }
+
+    footer { border-top: 1px solid var(--surface); padding: 2rem 0; font-size: .95rem; }
+
+    .badge { display: inline-block; background: var(--surface); border-radius: 999px; padding: .25rem .6rem; font-weight: 700; }
+
+    .visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; clip-path: inset(50%); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-in { animation: fade .6s ease-out both; }
+      @keyframes fade { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+    }
+
+    /* Simple table */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: .6rem; }
+    th { border-bottom: 2px solid var(--surface); }
+    tr + tr td { border-top: 1px solid var(--surface); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header role="banner">
+    <div class="container nav" aria-label="Top Navigation">
+      <div class="brand" aria-label="A11yBridge Home">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8Z"/><path d="M11 7h2v10h-2zM7 11h10v2H7z"/></svg>
+        <span>A11yBridge</span>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero container fade-in" aria-labelledby="tagline">
+      <span class="badge" id="tagline">WCAG 2.1/2.2 • AODA • PDF/Android/Web</span>
+      <h1>Ship inclusive products — fast.</h1>
+      <p class="sub">A11yBridge helps teams meet WCAG, reduce legal risk, and build products that work for everyone. Short sprints, clear tickets, and pragmatic remediation you can actually ship.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">Book a free 15‑min call</a>
+        <a class="btn secondary" href="#services">See services & pricing</a>
+      </div>
+      <div class="kpis" role="list" aria-label="Highlights">
+        <div class="kpi" role="listitem"><strong>50+</strong><br/>audits completed</div>
+        <div class="kpi" role="listitem"><strong>WCAG 2.2</strong><br/>aligned tickets</div>
+        <div class="kpi" role="listitem"><strong>Enterprise</strong><br/>experience</div>
+        <div class="kpi" role="listitem"><strong>Bilingual</strong><br/>EN/FR support</div>
+      </div>
+    </section>
+
+    <section id="services" class="section container" aria-labelledby="svc-h">
+      <h2 id="svc-h">Services</h2>
+      <div class="grid">
+        <div class="col-6 card">
+          <h3>Rapid WCAG Audit (2–3 weeks)</h3>
+          <p>Heuristic + assistive tech testing (NVDA/JAWS/VoiceOver), prioritized findings, and a developer‑ready ticket set (Issue, Impact, Steps, Expected, Remediation, Proposed code).</p>
+          <ul>
+            <li>Scope: 8–12 key screens or flows</li>
+            <li>Deliverable: PDF/Markdown report + ticket bundle</li>
+            <li>Add‑on: Retest & sign‑off</li>
+          </ul>
+        </div>
+        <div class="col-6 card">
+          <h3>Remediation Support</h3>
+          <p>Pair with your devs to fix issues quickly. We provide code samples, aria patterns, and QA checklists; we also review pull requests.</p>
+          <ul>
+            <li>Focus: Name/Role/Value, Keyboard, Dialogs, Forms</li>
+            <li>Artifacts: PR comments, pattern snippets</li>
+          </ul>
+        </div>
+        <div class="col-6 card">
+          <h3>VPAT & Conformance Docs</h3>
+          <p>Author or review VPAT/ACR for WCAG 2.2. Clear, defensible statements aligned with actual testing.</p>
+        </div>
+        <div class="col-6 card">
+          <h3>Training & Clinics</h3>
+          <p>Beginner‑friendly workshops for devs, QA, product. Topics: Color contrast, forms, dialogs, ARIA patterns, Android a11y.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section container" aria-labelledby="work-h">
+      <h2 id="work-h">Selected Work</h2>
+      <p class="sub">Recent engagements span enterprise web apps, Android, and content platforms. Names available on request / under NDA.</p>
+      <table aria-describedby="work-note">
+        <caption id="work-note" class="visually-hidden">A short list of past projects and outcomes.</caption>
+        <thead>
+          <tr><th scope="col">Project</th><th scope="col">Scope</th><th scope="col">Outcome</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Municipal services portal</td>
+            <td>WCAG 2.2 audit + remediation tickets</td>
+            <td>Reduced critical a11y bugs by 80% in one sprint</td>
+          </tr>
+          <tr>
+            <td>Insurance quote flow</td>
+            <td>Keyboard & dialog fixes; live region status</td>
+            <td>Successful QA sign‑off, improved CSAT</td>
+          </tr>
+          <tr>
+            <td>Android customer search</td>
+            <td>VPAT, contrast fixes, TalkBack labels</td>
+            <td>Approved vendor accessibility review</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="about" class="section container" aria-labelledby="about-h">
+      <h2 id="about-h">About A11yBridge</h2>
+      <div class="grid">
+        <div class="col-6">
+          <p>A11yBridge is led by <strong>Farah Ali Aman</strong>, an accessibility consultant experienced in audits, remediation, VPATs, and training across enterprise and public‑sector teams. We favor practical guidance, clear tickets, and measurable outcomes.</p>
+          <ul>
+            <li>WCAG 2.1/2.2 • AODA • EN/FR</li>
+            <li>Web • Android • PDFs</li>
+            <li>Tooling: AXE, WAVE, Pa11y, NVDA, JAWS, VoiceOver</li>
+          </ul>
+        </div>
+        <div class="col-6 card" role="complementary" aria-label="Availability">
+          <h3>Availability</h3>
+          <p>Currently accepting <strong>2–4 week</strong> audit and remediation engagements. Rush options available.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <p class="sub">Tell us about your project. We’ll reply within two business days.</p>
+      <form id="contact-form" action="https://formspree.io/f/your-id" method="POST" novalidate>
+        <div class="grid" role="group" aria-labelledby="contact-h">
+          <div class="col-6">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required aria-required="true" style="width:100%; padding:.6rem; border-radius:.5rem; border:1px solid var(--surface)" />
+          </div>
+          <div class="col-6">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required aria-required="true" style="width:100%; padding:.6rem; border-radius:.5rem; border:1px solid var(--surface)" />
+          </div>
+          <div class="col-6">
+            <label for="services-select">What do you need?</label>
+            <select id="services-select" name="service" style="width:100%; padding:.6rem; border-radius:.5rem; border:1px solid var(--surface)">
+              <option>Rapid WCAG audit</option>
+              <option>Remediation support</option>
+              <option>VPAT / ACR</option>
+              <option>Training</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="timeline">Timeline</label>
+            <input id="timeline" name="timeline" type="text" placeholder="e.g., 2–4 weeks" style="width:100%; padding:.6rem; border-radius:.5rem; border:1px solid var(--surface)" />
+          </div>
+          <div class="col-6" style="grid-column: 1 / -1;">
+            <label for="message">Project details</label>
+            <textarea id="message" name="message" rows="5" style="width:100%; padding:.6rem; border-radius:.5rem; border:1px solid var(--surface)"></textarea>
+          </div>
+          <div class="col-6" style="grid-column: 1 / -1; display:flex; align-items:center; gap:.5rem;">
+            <input id="consent" type="checkbox" name="consent" value="yes" />
+            <label for="consent">I agree to be contacted about my request.</label>
+          </div>
+        </div>
+        <p id="form-status" role="status" aria-live="polite" class="visually-hidden"></p>
+        <button class="btn primary" type="submit">Send request</button>
+      </form>
+      <p style="margin-top:1rem;" aria-label="Direct email">Prefer email? <a href="mailto:hello@a11ybridge.com">hello@a11ybridge.com</a></p>
+    </section>
+
+    <section class="section container" aria-labelledby="accessibility-h">
+      <h2 id="accessibility-h">Accessibility Statement</h2>
+      <p>We aim for WCAG 2.2 AA. If you encounter a barrier, email <a href="mailto:access@a11ybridge.com">access@a11ybridge.com</a>. We welcome feedback.</p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p><strong>A11yBridge Inc.</strong> • Ottawa, Canada • <a href="mailto:hello@a11ybridge.com">hello@a11ybridge.com</a></p>
+      <p>&copy; <span id="year"></span> A11yBridge. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Update year and basic progressively-enhanced form status
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    form?.addEventListener('submit', function(e){
+      status.classList.remove('visually-hidden');
+      status.textContent = 'Submitting…';
+    });
+  </script>
+</body>
+</html>
